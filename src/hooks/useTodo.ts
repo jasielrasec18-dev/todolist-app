@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react"
 
 export interface Todo {
     id: number;
-    title: string;
+    text: string;
     completed: boolean;
 }
 
@@ -22,7 +22,7 @@ export const useTodo = () => {
             ...prev,
             {
                 id: Date.now(),
-                title: todoItem,
+                text: todoItem,
                 completed: false,
             },
         ]);
