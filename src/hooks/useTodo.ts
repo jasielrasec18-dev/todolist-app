@@ -1,22 +1,22 @@
 import { useState, type FormEvent } from "react"
 
 export interface Todo {
-    id: number
-    title: string
-    completed: boolean
+    id: number;
+    title: string;
+    completed: boolean;
 }
 
 export const useTodo = () => {
-    const [todoList, setTodoList] = useState<Todo[]>([])
-    const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
+    const [todoList, setTodoList] = useState<Todo[]>([]);
+    const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
 
     const addTodo = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        const formData = new FormData(event.currentTarget)
-        const todoItem = formData.get('todo') as string
+        const formData = new FormData(event.currentTarget);
+        const todoItem = formData.get('todo') as string;
 
-        if (!todoItem.trim()) return
+        if (!todoItem.trim()) return;
 
         setTodoList((prev) => [
             ...prev,
@@ -27,26 +27,25 @@ export const useTodo = () => {
             },
         ]);
 
-        event.currentTarget.reset()
+        event.currentTarget.reset();
 
         setFilter('all')
     };
 
     const toggleTodoCompleted = (id: number) => {
-        const newTodoList = todoList.map(todo => {
-            if (todo.id === id) {
-                const completed = !todo.completed
-
+        const newTodoList = todoList.map((todo) => {
+            if (id === todo.id) {
+                const completed = !todo.completed;
                 return {
                     ...todo,
-                    completed
-                }
+                    completed,
+                };
             }
 
-            return todo
+            return todo;
         })
 
-        setTodoList(newTodoList)
+        setTodoList(newTodoList);
     }
 
     const filteredTodos = todoList.filter(todo => {
@@ -55,8 +54,8 @@ export const useTodo = () => {
         return true;
     });
 
-    const clearSelected = () => {
-        setTodoList((prev) => prev.filter((todo) => !todo.completed))
+    const clearCompleted = () => {
+        setTodoList((prev) => prev.filter((todo) => !todo.completed));
     }
     
     const removeTodo = (id: number) => {
@@ -69,7 +68,7 @@ export const useTodo = () => {
         filter,
         setFilter,
         filteredTodos,
-        clearSelected,
+        clearCompleted,
         removeTodo
     }
 };

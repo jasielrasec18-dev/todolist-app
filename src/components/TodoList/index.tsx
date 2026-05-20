@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { themeConfig } from '../../contexts/theme';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import type { Todo } from '../../hooks/useTodo';
-import IconCheck from '/images/icon-check.svg';
-import IconRemove from "/images/icon-remove.svg";
+import IconCheck from '../../../public/images/icon-check.svg';
+import IconRemove from '../../../public/images/icon-remove.svg';
 
 interface TodoListProps {
-  todoList: Todo[]
+  todoList: Todo[];
   toggleTodoCompleted: (id: number) => void;
   setFilter: (filter: "all" | "active" | "completed") => void;
   filter: "all" | "active" | "completed";
@@ -32,7 +32,7 @@ const TodoList = ({
             <li className={`p-6 border-b ${themeConfig[theme].todo.borderColor}`} key={todo.id}>
 
               <div className="flex items-center gap-4">
-                <span className="w-6 h-6 rounded-full hover:bg-[linear-gradient(to_right,hsl(192,100%,67%),hsl(280,87%,65%))] hover:p-[1px]">
+                <span className="w-6 h-6 rounded-full hover:bg-[linear-gradient(to_right,hsl(192,100%,67%),hsl(280,87%,65%))] hover:p-px">
                   <button
                     onClick={() => toggleTodoCompleted(todo.id)}
                     className={`w-full h-full border ${themeConfig[theme].todo.borderColor}
