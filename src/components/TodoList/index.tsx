@@ -15,7 +15,7 @@ interface TodoListProps {
 }
 
 const TodoList = ({
-  todoList, 
+  todoList,
   toggleTodoCompleted,
   setFilter,
   filter,
@@ -56,12 +56,12 @@ const TodoList = ({
                 <button
                   onClick={() => removeTodo(todo.id)}
                   className="cursor-pointer ml-auto"
-                  >
+                >
                   <img
-                  src={IconRemove}
-                  alt="remove icon"
-                  className="w-5 h-5"
-                />
+                    src={IconRemove}
+                    alt="remove icon"
+                    className="w-5 h-5"
+                  />
                 </button>
               </div>
             </li>
