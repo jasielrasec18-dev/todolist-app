@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, type FormEvent } from "react"
 
 export interface Todo {
     id: number
@@ -10,7 +10,7 @@ export const useTodo = () => {
     const [todoList, setTodoList] = useState<Todo[]>([])
     const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
 
-    function addTodo(event: React.FormEvent<HTMLFormElement>) {
+    const addTodo = (event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
@@ -25,13 +25,15 @@ export const useTodo = () => {
                 title: todoItem,
                 completed: false,
             },
-        ])
+        ]);
 
         event.currentTarget.reset()
-    }
 
-    function toggleTodoCompleted(id: number) {
-        const newTodo = todoList.map(todo => {
+        setFilter('all')
+    };
+
+    const toggleTodoCompleted = (id: number) => {
+        const newTodoList = todoList.map(todo => {
             if (todo.id === id) {
                 const completed = !todo.completed
 
@@ -44,21 +46,21 @@ export const useTodo = () => {
             return todo
         })
 
-        setTodoList(newTodo)
+        setTodoList(newTodoList)
     }
 
     const filteredTodos = todoList.filter(todo => {
         if (filter === 'active') return !todo.completed
         if (filter === 'completed') return todo.completed
-        return true
-    })
+        return true;
+    });
 
-    function clearSelected() {
-        setTodoList(prev => prev.filter(todo => !todo.completed))
+    const clearSelected = () => {
+        setTodoList((prev) => prev.filter((todo) => !todo.completed))
     }
     
-    function removeTodo(id: number) {
-        setTodoList(prev => prev.filter(todo => todo.id !== id))
+    const removeTodo = (id: number) => {
+        setTodoList((prev) => prev.filter((todo) => todo.id !== id))
     }
 
     return {
@@ -70,4 +72,4 @@ export const useTodo = () => {
         clearSelected,
         removeTodo
     }
-}
+};

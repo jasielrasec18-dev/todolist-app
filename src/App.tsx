@@ -1,9 +1,8 @@
-import TodoForm from "./components/TodoForm";
-import TodoHeader from "./components/TodoHeader";
-import TodoList from "./components/TodoList";
-import { TodoContainer } from "./components/TodoContainer";
-import { useTodo } from "./hooks/useTodo";
-
+import { TodoContainer } from './components/TodoContainer';
+import TodoForm from './components/TodoForm';
+import TodoHeader from './components/TodoHeader';
+import TodoList from './components/TodoList';
+import { useTodo } from './hooks/useTodo';
 
 
 function App() {
@@ -30,9 +29,9 @@ function App() {
         filter={filter}
         clearCompleted={clearCompleted}
         removeTodo={removeTodo}
-      />
-    </TodoContainer>
-  );
-}
+       ></TodoList >
+    </TodoContainer >
+  )
+};
 
 export default App;

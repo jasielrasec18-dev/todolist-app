@@ -3,6 +3,7 @@ import { themeConfig } from '../../contexts/theme';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import type { Todo } from '../../hooks/useTodo';
 import IconCheck from '/images/icon-check.svg';
+import IconRemove from "/images/icon-remove.svg";
 
 interface TodoListProps {
   todoList: Todo[]
@@ -14,7 +15,8 @@ interface TodoListProps {
 }
 
 const TodoList = ({
-  todoList, toggleTodoCompleted,
+  todoList, 
+  toggleTodoCompleted,
   setFilter,
   filter,
   clearCompleted,
@@ -53,10 +55,13 @@ const TodoList = ({
 
                 <button
                   onClick={() => removeTodo(todo.id)}
-                  className="ml-auto text-sm font-bold text-red-500 hover:text-red-400"
-                  aria-label={`Remover ${todo.text}`}
-                >
-                  ×
+                  className="cursor-pointer ml-auto"
+                  >
+                  <img
+                  src={IconRemove}
+                  alt="remove icon"
+                  className="w-5 h-5"
+                />
                 </button>
               </div>
             </li>
