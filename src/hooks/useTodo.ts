@@ -10,7 +10,7 @@ export const useTodo = () => {
     const [todoList, setTodoList] = useState<Todo[]>([])
     const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
 
-    const addTodo = (event: FormEvent<HTMLFormElement>) {
+    const addTodo = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const formData = new FormData(event.currentTarget)
